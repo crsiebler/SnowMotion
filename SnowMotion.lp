@@ -14,8 +14,8 @@ person(xerxes; blake; flynn; kira; ollie; regan; vanessa).
 % The Five Sleds
 vehicle(luge; plastic; toboggan; tube1; tube2).
 
-% The Order the People went down the hill
-order(1..7).
+% The Order the Sleds went down the hill
+order(1..5).
 
 %---------------------------------%
 % Define the Rules for the Puzzle %
@@ -23,7 +23,7 @@ order(1..7).
 
 % Some vehicles contained only one person, while others held two-riders
 1 { rode(P,V) : person(P) } 1..2 :- vehicle(V).
-1 { rode(P,V) : vehicle(V) } 1 :- person(P).
+1 { rode(P,V) : vehicle(V) } 1..2 :- person(P).
 
 % The sleds went down the hill in a specific order
 1 { sled(V,O) : vehicle(V) } 1 :- order(O).
@@ -46,7 +46,7 @@ order(1..7).
 :- order(X), order(Y), sled(luge,X), sled(plastic,Y), Y<=X+1. 
 
 % Kira and Ollie (who rode on the same vehicle) slipped down the slope immediately before Regan.
-:- vehicle(X), vehicle(Y), vehicle(Z), order(A), order(B), rode(kira,X), rode(ollie,Y), rode(regan,Z), sled(X,A), sled(Y,A), sled(Z,B), X!=Y, Z=X, A!=B-1. 
+:- vehicle(X), vehicle(Y), vehicle(Z), order(A), order(B), rode(kira,X), rode(ollie,Y), rode(regan,Z), sled(X,A), sled(Z,B), X!=Y, Z=X, A!=B-1.
 
 % Blake and Flynn rode the same vehicle and it was not an inner tube.
 :- vehicle(X), vehicle(Y), rode(blake,X), rode(flynn,Y), X!=Y.

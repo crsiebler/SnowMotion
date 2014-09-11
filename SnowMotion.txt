@@ -15,7 +15,7 @@ person(xerxes; blake; flynn; kira; ollie; regan; vanessa).
 vehicle(luge; plastic; toboggan; tube1; tube2).
 
 % The Order the People went down the hill
-order(1..7).
+order(1..5).
 
 %---------------------------------%
 % Define the Rules for the Puzzle %
